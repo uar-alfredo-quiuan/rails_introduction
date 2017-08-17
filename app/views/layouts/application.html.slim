@@ -7,6 +7,15 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   body
+    nav.navbar.navbar-inverse
+      .container-fluid
+        .navbar-header
+          a.navbar-brand[href="#"]
+		    | RubyIntroduction
+		- if user_signed_in?
+		  ul.nav.navbar-nav.navbar-right
+		    li
+              = link_to 'Logout', destroy_session_path(current_user), method: :delete
     .container
 	  - if !notice.nil?
 	    .alert.alert-info
@@ -16,4 +25,5 @@ html
         .alert.alert-warning	  
           p.alert
             = alert
-    = yield
+	.conainer-fluid
+      = yield

@@ -1,0 +1,33 @@
+.row
+  .col-md-10.col-md-offset-1.panel.panel-default
+    h1.text-center.panel-heading
+      | Users
+    = link_to 'New User', new_user_path, class: "btn btn-primary pull-right"
+    table.table.table-striped.panel-body
+      thead
+        tr
+          th
+            | First name
+          th
+            | Middle name
+          th
+            | Last name
+          th
+            | Email
+          th[colspan="2"]
+		    | Actions
+      tbody
+        - @users.each do |user|
+          tr
+            td
+              = user.first_name
+            td
+              = user.middle_name
+            td
+              = user.last_name
+            td
+              = user.email
+            td
+              = link_to 'Edit', edit_user_path(user)		  
+            td
+              = link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }

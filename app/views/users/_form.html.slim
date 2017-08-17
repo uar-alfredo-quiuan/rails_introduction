@@ -1,0 +1,14 @@
+= simple_form_for(@user, html: { class: "panel-body" }, defaults: { wrapper_html: { class: 'form-group' }, input_html: { class: 'form-control' } } ) do |f|
+  = f.error_notification
+  .form-inputs
+    = f.input :email, required: true, autofocus: true
+    = f.input :first_name, minlength: false
+    = f.input :middle_name, minlength: false
+    = f.input :last_name, minlength: false
+	= f.input :role, collection: Role::ROLE_TYPES, prompt: "Select a Role", required: true
+    = f.input :password
+    = f.input :password_confirmation
+  .form-actions
+    = f.button :submit
+.panel-footer
+  = link_to 'Back', :back, class: "btn btn-primary"
