@@ -5,7 +5,7 @@
     = f.input :first_name, minlength: false
     = f.input :middle_name, minlength: false
     = f.input :last_name, minlength: false
-	= f.input :role, collection: Role::ROLE_TYPES, prompt: "Select a Role", required: true
+	= f.input :role, collection: Role::ROLE_TYPES, selected: f.object.role || :user, required: true
     = f.input :password
     = f.input :password_confirmation
   .form-actions

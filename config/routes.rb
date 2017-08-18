@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  
+
+  get 'dashboard/index'
+
+  root 'homepage#index'
+  get 'homepage/index'
+
   devise_for :users, :path_prefix => 'devise'
   resources :users
 
