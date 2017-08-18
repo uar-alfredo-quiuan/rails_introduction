@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :contracts
+
   get 'dashboard/index'
 
   root 'homepage#index'

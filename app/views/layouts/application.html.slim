@@ -13,6 +13,12 @@ html
           a.navbar-brand[href="#"]
 		    | RubyIntroduction
 		- if user_signed_in?
+  	  	  ul.nav.navbar-nav.navbar-left
+  	  		- if current_user.role == "admin"
+      		  li
+                = link_to "Users", users_path
+      		li
+              = link_to "Contracts", contracts_path
 		  ul.nav.navbar-nav.navbar-right
 	    	li
               = link_to current_user.email, edit_user_registration_path

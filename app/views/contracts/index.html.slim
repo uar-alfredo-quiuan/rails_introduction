@@ -1,0 +1,25 @@
+.row
+  .col-md-10.col-md-offset-1.panel.panel-default
+    h1.text-center.panel-heading
+      | Listing Contracts
+    - if current_user.role == "admin"
+      = link_to 'New Contract', new_contract_path, class: "btn btn-primary pull-right"
+    table.table.table-striped.panel-body
+      thead
+        tr
+          th
+            | Name
+          th
+            | Created
+		  - if current_user.role == "admin"
+            th.text-center[colspan="3"]
+		      | Actions
+      tbody
+        - @contracts.each do |contract|
+          tr
+            td = contract.name
+            td = contract.created_at
+			- if current_user.role == "admin"
+              td = link_to 'Show', contract
+              td = link_to 'Edit', edit_contract_path(contract)
+              td = link_to 'Destroy', contract, data: { confirm: 'Are you sure?' }, method: :delete

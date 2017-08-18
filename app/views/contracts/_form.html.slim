@@ -1,0 +1,8 @@
+= simple_form_for(@contract, html: { class: "panel-body" }, defaults: { wrapper_html: { class: 'form-group' }, input_html: { class: 'form-control' } } ) do |f|
+  = f.error_notification
+  .form-inputs
+    = f.input :name
+  .form-actions
+    = f.button :submit
+.panel-footer
+  = link_to 'Back', :back, class: "btn btn-primary"
