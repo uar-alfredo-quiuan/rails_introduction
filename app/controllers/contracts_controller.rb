@@ -30,7 +30,7 @@ class ContractsController < ApplicationController
 
   def update
     if @contract.update(contract_params)
-      redirect_to contracts_path
+      redirect_to contract_path
     end
   end
 
