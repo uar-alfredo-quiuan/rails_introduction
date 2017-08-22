@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   resources :contracts do
     resources :merchandises
+    resources :payments
   end
 
   get 'dashboard/index'

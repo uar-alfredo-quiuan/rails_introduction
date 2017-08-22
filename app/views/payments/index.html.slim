@@ -1,0 +1,48 @@
+.row
+  .col-md-10.col-md-offset-1
+    .panel.panel-default
+      h1.text-center.panel-heading 
+	    | Listing payments
+	    button.btn.btn-info.pull-right type="button"
+	      | Balance 
+	      span.badge
+	        = @contract.merchandises.sum(:price) - @contract.payments.sum(:amount)
+      - if current_user.role == "admin"
+	    - if (@contract.merchandises.sum(:price) - @contract.payments.sum(:amount)) > 0
+          = link_to 'New Payment', new_contract_payment_path, :remote => true, data: {'toggle' =>  "modal", 'target' => '#modal-window'}, class: "btn btn-primary pull-right"
+      table.table.table-striped.panel-body.table-responsive.payment-table
+        thead
+          tr
+      		th Date
+			th Description
+			th Amount
+		    - if current_user.role == "admin"
+              th.text-center[colspan="2"]
+     	        | Actions
+        tbody
+		  = render @contract.payments
+		  tr.info
+		  	td
+			  strong
+                | Total			   
+			td
+			td.text-right
+			  strong
+			    = @contract.payments.sum(:amount)
+		    - if current_user.role == "admin"
+              td
+			  td
+	  .panel-footer
+	    = link_to 'Back', @contract, class: "btn btn-primary"
+#modal-window.modal.fade[role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"]
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close type="button" data-dismiss="modal"
+          span aria-hidden="true" &times;
+          span.sr-only Close
+        h4.modal-title= t(:new_post)
+      .modal-body
+      .modal-footer
+	    button.btn.btn-default type="button" data-dismiss="modal"
+		  | Close

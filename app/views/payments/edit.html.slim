@@ -1,0 +1,8 @@
+.row
+  .col-md-6.col-md-offset-3
+  	.panel.panel-default
+      h2.panel-heading.text-center
+	    | Update Payment
+      = render 'form', contract: @contract
+	  .panel-footer
+	    = link_to 'Back', contract_payments_path(@contract), class: "btn btn-primary"

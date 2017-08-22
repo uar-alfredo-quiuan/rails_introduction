@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2017-08-21
+  description: MyText
+  amount: 1.5
+  contract_id: 
+
+two:
+  date: 2017-08-21
+  description: MyText
+  amount: 1.5
+  contract_id: 

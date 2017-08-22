@@ -2,8 +2,14 @@
   .col-md-10.col-md-offset-1
     .panel.panel-default
       h1.text-center.panel-heading
+        - if current_user.role == "admin"
+          = link_to 'Edit Contract', edit_contract_path(@contract), class: "btn btn-default pull-left"
+        = link_to 'Payments', contract_payments_path(@contract), class: "btn btn-default pull-left"
         = @contract.name
-	    = link_to 'Edit Contract', edit_contract_path(@contract), class: "btn btn-default pull-left"
+		button.btn.btn-info.pull-right type="button"
+		  | Balance 
+		  span.badge
+		    = @contract.merchandises.sum(:price) - @contract.payments.sum(:amount)
       - if current_user.role == "admin"
         = link_to 'New Merchandise', new_contract_merchandise_path(@contract), class: "btn btn-primary pull-right"
       table.table.table-striped.panel-body.table-responsive
@@ -11,21 +17,22 @@
           tr
             th
               | Name
-            th
+            th.text-right
               | Price
 		    - if current_user.role == "admin"
               th.text-center[colspan="2"]
-		        | Actions
+     	        | Actions
         tbody
 		  = render @contract.merchandises
 		  tr.info
 		  	td
 			  strong
                 | Total			   
-			td
+			td.text-right
 			  strong
 			    = @contract.merchandises.sum(:price)
-			td
-			td
+		    - if current_user.role == "admin"
+              td
+			  td
 	  .panel-footer
 	    = link_to 'Back', contracts_path, class: "btn btn-primary"

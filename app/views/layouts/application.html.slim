@@ -37,5 +37,14 @@ html
         .alert.alert-warning	  
           p.alert
             = alert
+	  - unless @errors.nil?
+	    - if @errors.any?
+          .alert.alert-danger
+	        h2 
+	          = pluralize(@errors.size, "error") 
+	           | prohibited this article from being saved:
+	        ul
+	          - @errors.each do |msg|
+	            li = msg
 	.conainer-fluid
       = yield

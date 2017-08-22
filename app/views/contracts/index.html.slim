@@ -14,13 +14,16 @@
               | Created
 		    - if current_user.role == "admin"
               th.text-center[colspan="3"]
-		        | Actions
+	  	        | Actions
+			- else
+              th.text-center[colspan="1"]
+    	        | Actions
         tbody
           - @contracts.each do |contract|
             tr
               td = contract.name
               td = contract.created_at
+              td = link_to 'Show', contract
 			  - if current_user.role == "admin"
-                td = link_to 'Show', contract
                 td = link_to 'Edit', edit_contract_path(contract)
                 td = link_to 'Destroy', contract, data: { confirm: 'Are you sure?' }, method: :delete

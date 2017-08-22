@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong Date:
+  = @payment.payment_date
+p
+  strong Description:
+  = @payment.description
+p
+  strong Amount:
+  = @payment.amount
+p
+  strong Contract:
+  = @payment.contract
+= link_to 'Back', :back

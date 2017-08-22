@@ -1,0 +1,7 @@
+tr
+  td = payment.payment_date
+  td = payment.description
+  td.text-right = payment.amount
+  - if current_user.role == "admin"
+    td.text-right = link_to 'Edit', edit_contract_payment_path(payment.contract, payment)
+    td.text-right = link_to 'Destroy', [payment.contract, payment], data: { confirm: 'Are you sure?' }, method: :delete
