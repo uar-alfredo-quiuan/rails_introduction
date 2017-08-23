@@ -15,5 +15,5 @@ foreman start -p 3005
 	- localhost:3005/letter_opener/
 
 - The admin user is:
-  user: alfredoquiuan@admin.com
-  password: 123456
+> user: alfredoquiuan@admin.com  
+> password: 123456
