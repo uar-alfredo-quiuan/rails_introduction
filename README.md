@@ -4,16 +4,16 @@
 
 - Please load before `db:migrate` and `db:seed`
 
-- you could use `foreman` to start the Procfile, e.g:
+- You could use `foreman` to start the Procfile, e.g:
 ```
 foreman start -p 3005
 ```
 
-- And you can access to server, resque and letter_opener, e.g:
+- Then you can access to server, resque and letter_opener, e.g:
 	- localhost:3005
 	- localhost:3005/resque
 	- localhost:3005/letter_opener/
 
 - The admin user is:
-> user: alfredoquiuan@admin.com
-> password: 123456
+  user: alfredoquiuan@admin.com
+  password: 123456
