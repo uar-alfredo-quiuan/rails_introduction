@@ -62,8 +62,7 @@ class PaymentsController < ApplicationController
     end
     
     def check_balance(contract)
-      balance = contract.merchandises.sum(:price) - contract.payments.sum(:amount)
-      if balance == 0
+      if contract.contract_balance == 0
         SystemMailer.contract_payed_email(contract).deliver
       end
     end

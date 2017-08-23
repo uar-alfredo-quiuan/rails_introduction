@@ -6,9 +6,9 @@
 	    button.btn.btn-info.pull-right type="button"
 	      | Balance 
 	      span.badge
-	        = @contract.merchandises.sum(:price) - @contract.payments.sum(:amount)
+	        = @contract.contract_balance
       - if current_user.role == "admin"
-	    - if (@contract.merchandises.sum(:price) - @contract.payments.sum(:amount)) > 0
+	    - if @contract.contract_balance > 0
           = link_to 'New Payment', new_contract_payment_path, :remote => true, data: {'toggle' =>  "modal", 'target' => '#modal-window'}, class: "btn btn-primary pull-right"
       table.table.table-striped.panel-body.table-responsive.payment-table
         thead

@@ -26,9 +26,7 @@ class Payment < ActiveRecord::Base
   
   def check_balance(contract_id, amount)
     contract = Contract.find(contract_id)
-    balance = contract.merchandises.sum(:price) - contract.payments.sum(:amount)
-    puts balance
-    puts amount
+    balance = contract.contract_balance
     if balance < amount.to_f
       errors.add(:amount, "can't be greater than the balance: #{balance}")    
     end

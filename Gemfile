@@ -39,11 +39,16 @@ gem 'spring',        group: :development
 gem "slim-rails"
 
 gem 'redis'
+gem 'redis-rails', '~> 4'
 gem 'resque', require: 'resque/server'
+gem 'resque-scheduler'
 
 gem 'simple_form'
 
-gem "letter_opener", :group => :development
+group :development do
+  gem "letter_opener"
+  gem 'letter_opener_web'
+end
 
 gem 'cancancan', '~> 2.0'
 
@@ -53,3 +58,5 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'sass-rails', '>= 3.2'
 
 gem 'jquery-ui-rails'
+
+gem 'foreman'

@@ -4,18 +4,12 @@ html
     meta[content="text/html" charset="UTF-8" http-equiv="Content-Type"]
   body
   	= @contract.name
+	br
     | Contract Items:
     ul
       - @contract.merchandises.each do |item|
-        li 
-	      = item.name
-		  | ,
-		  = item.price
+        li #{item.name} - #{item.price}
     | Contract Payments:
-    - @contract.payments.each do |payment|
-      li 
-	    = payment.description
-		| ,
-	    = payment.amount
-		| ,
-	    = payment.payment_date
+	ul
+      - @contract.payments.each do |payment|
+        li #{payment.description} - #{payment.amount} - #{payment.payment_date}

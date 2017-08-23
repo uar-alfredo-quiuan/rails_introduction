@@ -1,0 +1,8 @@
+do_job:
+  #every: 30s
+  #every 30 seconds for test
+  cront: 0 0 * * *
+  class: Job
+  args:
+  description: Runs the perform method in Job
+  queue: job_queue 

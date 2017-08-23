@@ -1,0 +1,9 @@
+doctype html
+html
+  head
+    meta[content="text/html" charset="UTF-8" http-equiv="Content-Type"]
+  body
+    ul
+    - @contracts.each do |contract|
+      li 
+	    | #{contract.name} - Total Amount: #{contract.total} - Balance due: #{contract.balance}
