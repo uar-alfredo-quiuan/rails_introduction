@@ -11,8 +11,8 @@
 		  span.badge
 		    = @contract.merchandises.sum(:price) - @contract.payments.sum(:amount)
       - if current_user.role == "admin"
-        = link_to 'New Merchandise', new_contract_merchandise_path(@contract), class: "btn btn-primary pull-right"
-      table.table.table-striped.panel-body.table-responsive
+		= link_to 'New Merchandise', new_contract_merchandise_path(@contract), :remote => true, data: {'toggle' =>  "modal", 'target' => '#modal-window'}, class: "btn btn-primary pull-right"
+      table.table.table-striped.panel-body.table-responsive.merchandise-table
         thead
           tr
             th
@@ -28,7 +28,7 @@
 		  	td
 			  strong
                 | Total			   
-			td.text-right
+			td.text-right.amount
 			  strong
 			    = @contract.merchandises.sum(:price)
 		    - if current_user.role == "admin"
@@ -36,3 +36,17 @@
 			  td
 	  .panel-footer
 	    = link_to 'Back', contracts_path, class: "btn btn-primary"
+#modal-window.modal.fade[role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"]
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close type="button" data-dismiss="modal"
+          span aria-hidden="true" &times;
+          span.sr-only Close
+        h4.modal-title= t(:new_post)
+      .modal-body
+	    .errors-section
+		.form-section
+      .modal-footer
+	    button.btn.btn-default type="button" data-dismiss="modal"
+		  | Close

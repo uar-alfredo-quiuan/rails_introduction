@@ -30,11 +30,16 @@ class PaymentsController < ApplicationController
     @payment = @contract.payments.create(payment_params)
     if @payment.errors.size != 0
       errors = @payment.errors.full_messages
+      respond_to do |format|
+        format.json { render json: { errors: errors }, status: :bad_request }
+      end
     else
-      errors = nil
       check_balance(@contract)
+      respond_to do |format|
+        format.json { render json: { payment: @payment }, status: "ok"  }
+        format.html { redirect_to contract_payments_path(@contract), notice: 'Item was successfully created.' }
+      end
     end
-    redirect_to contract_payments_path(@contract, :errors => errors)
   end
 
   def update

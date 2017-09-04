@@ -4,3 +4,5 @@
       h2.panel-heading.text-center
 	    | Update Merchandise
       = render 'form', contract: @contract
+	  .panel-footer
+	    = link_to 'Back', :back, class: "btn btn-primary"

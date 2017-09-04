@@ -1,7 +1,7 @@
 class MerchandisesController < ApplicationController
   before_action :set_merchandise, only: [:show, :edit, :update, :destroy]
 
-  respond_to :html
+  respond_to :html, :js
   load_and_authorize_resource :except => [:index, :show]
 
   def index
@@ -26,10 +26,16 @@ class MerchandisesController < ApplicationController
   def create
     @contract = Contract.find(params[:contract_id])
     @merchandise = @contract.merchandises.create(merchandise_params)
-    if @merchandise.id
-      redirect_to contract_path(@contract)
+    if @merchandise.errors.size != 0
+      errors = @payment.errors.full_messages
+      respond_to do |format|
+        format.json { render json: { errors: errors }, status: :bad_request }
+      end
     else
-      render 'new'
+      respond_to do |format|
+        format.json { render json: { merchandise: @merchandise }, status: "ok"  }
+        format.html { redirect_to contract_path(@contract), notice: 'Item was successfully created.' }
+      end
     end
   end
 
@@ -43,9 +49,18 @@ class MerchandisesController < ApplicationController
   end
 
   def destroy
-    @merchandise.destroy
     @contract = Contract.find(params[:contract_id])
-    redirect_to contract_path(@contract)
+    balance = @contract.contract_balance
+    if balance < @merchandise.price
+      respond_to do |format|
+        format.json { render json: { error: "can't delete item greater than the balance: #{balance}" }, status: :bad_request }
+      end
+    else
+      @merchandise.destroy
+      respond_to do |format|
+        format.json { render json: { merchandise: @merchandise }, status: "ok"  }
+      end
+    end
   end
 
   private

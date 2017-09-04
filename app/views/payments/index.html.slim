@@ -26,7 +26,7 @@
 			  strong
                 | Total			   
 			td
-			td.text-right
+			td.text-right.amount
 			  strong
 			    = @contract.payments.sum(:amount)
 		    - if current_user.role == "admin"
@@ -43,6 +43,8 @@
           span.sr-only Close
         h4.modal-title= t(:new_post)
       .modal-body
+	    .errors-section
+		.form-section
       .modal-footer
 	    button.btn.btn-default type="button" data-dismiss="modal"
 		  | Close

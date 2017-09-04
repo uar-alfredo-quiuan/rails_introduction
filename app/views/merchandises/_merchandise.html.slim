@@ -1,6 +1,6 @@
-tr
+tr[id="row_#{merchandise.id}"]
   td = merchandise.name
   td.text-right = merchandise.price
   - if current_user.role == "admin"
     td.text-right = link_to 'Edit', edit_contract_merchandise_path(merchandise.contract, merchandise)
-    td.text-right = link_to 'Destroy', [merchandise.contract, merchandise], data: { confirm: 'Are you sure?' }, method: :delete
+    td.text-right = link_to 'Destroy', [merchandise.contract, merchandise], data: { confirm: 'Are you sure?' }, method: :delete, remote:  true, class: "destroy"
